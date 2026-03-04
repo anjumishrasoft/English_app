@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>English Learning Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #3b82f6;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    #chatbox {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      height: 400px;
+      overflow-y: auto;
+    }
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .user {
+      background: #d1fae5;
+      text-align: right;
+    }
+    .bot {
+      background: #fee2e2;
+      text-align: left;
+    }
+    #inputArea {
+      width: 90%;
+      max-width: 600px;
+      margin: 10px auto;
+      display: flex;
+    }
+    #userInput {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    #sendBtn {
+      padding: 10px 20px;
+      margin-left: 10px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #sendBtn:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>English Learning Chatbot</h1>
+    <p>Practice Business English & Soft Skills</p>
+  </header>
+
+  <div id="chatbox"></div>
+
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button id="sendBtn">Send</button>
+  </div>
+
+  <script>
+    const chatbox = document.getElementById('chatbox');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.classList.add('message', sender);
+      msg.textContent = text;
+      chatbox.appendChild(msg);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function botReply(userText) {
+      // Simple demo replies – replace with AI integration
+      if(userText.toLowerCase().includes("hello")) {
+        return "Hello! Let's practice English together. Try saying: 'How are you today?'";
+      } else if(userText.toLowerCase().includes("email")) {
+        return "Tip: Always start business emails with a polite greeting, e.g., 'Dear Sir/Madam'.";
+      } else if(userText.toLowerCase().includes("chat")) {
+        return "In professional chats, keep sentences short and polite. Example: 'Could you please share the report?'.";
+      } else {
+        return "Good try! Can you rephrase that in a more formal way?";
+      }
+    }
+
+    sendBtn.addEventListener('click', () => {
+      const text = userInput.value.trim();
+      if(text) {
+        addMessage(text, 'user');
+        const reply = botReply(text);
+        setTimeout(() => addMessage(reply, 'bot'), 500);
+        userInput.value = '';
+      }
+    });
+
+    userInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') sendBtn.click();
+    });
+  </script>
+</body>
+</html>
