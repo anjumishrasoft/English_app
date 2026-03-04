@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Learning Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .question {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    .options label {
+      display: block;
+      background: #e9ecef;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .options input {
+      margin-right: 10px;
+    }
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .submit-btn:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>English Quiz</h2>
+    <div class="question">
+      Q1: Choose the correct synonym for "Happy".
+    </div>
+    <div class="options">
+      <label><input type="radio" name="q1" value="a"> Sad</label>
+      <label><input type="radio" name="q1" value="b"> Joyful</label>
+      <label><input type="radio" name="q1" value="c"> Angry</label>
+      <label><input type="radio" name="q1" value="d"> Tired</label>
+    </div>
+    <button class="submit-btn" onclick="checkAnswer()">Submit</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const options = document.getElementsByName('q1');
+      let selected = '';
+      for (let option of options) {
+        if (option.checked) {
+          selected = option.value;
+        }
+      }
+      const result = document.getElementById('result');
+      if (selected === 'b') {
+        result.textContent = "Correct! 'Joyful' is a synonym for 'Happy'.";
+        result.style.color = "green";
+      } else if (selected === '') {
+        result.textContent = "Please select an answer.";
+        result.style.color = "orange";
+      } else {
+        result.textContent = "Incorrect. Try again!";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
